@@ -5,6 +5,17 @@ function App() {
   return (
     <div className="app"> 
       <h1></h1>
+      {/* Header */}
+      {/* Title + Select Input dropdown field */}
+      
+      {/* InfoBox */}
+      {/* InfoBox */}
+      {/* InfoBox */}
+
+      {/* Table */}
+      {/* Graph */}
+
+      {/* Map */}
     </div>
   );
 }
