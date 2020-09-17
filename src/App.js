@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { MenuItem, FormControl, Select } from "@material-ui/core";
+import {
+  MenuItem,
+  FormControl,
+  Select,
+  Card,
+  CardContent,
+} from "@material-ui/core";
 import "./App.css";
 import InfoBox from "./InfoBox.js";
+import Map from "./Map.js";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -28,31 +35,42 @@ function App() {
 
   return (
     <div className="app">
-      <div className="app__header">
-        <h1> COVID - 19 TRACKER </h1>
-        <FormControl className="app__dropdown">
-          <Select variant="outlined" onChange={onCountryChange} value={country}>
-            <MenuItem value="worldwide"> Worldwide </MenuItem>
-            {/* Loop through all the countries and show a drop down list of the options */}
-            {countries.map((country) => (
-              <MenuItem value={country.value}> {country.name} </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+      <div className="app__left">
+        <div className="app__header">
+          <h1> COVID - 19 TRACKER </h1>
+          <FormControl className="app__dropdown">
+            <Select
+              variant="outlined"
+              onChange={onCountryChange}
+              value={country}
+            >
+              <MenuItem value="worldwide"> Worldwide </MenuItem>
+              {/* Loop through all the countries and show a drop down list of the options */}
+              {countries.map((country) => (
+                <MenuItem value={country.value}> {country.name} </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+        {/* Header */}
+        {/* Title + Select Input dropdown field */}
+        <div className="app__stats">
+          <InfoBox title="Coronavirus Cases" cases={21453} total={3000123} />
+          <InfoBox title="Recoverd" cases={12342} total={30123} />
+          <InfoBox title="Deaths" cases={3462} total={123623} />
+        </div>
+
+        {/* Table */}
+        {/* Graph */}
+        {/* Map */}
+        <Map />
       </div>
-      {/* Header */}
-      {/* Title + Select Input dropdown field */}
-      <div className="app__stats">
-        <InfoBox title="Coronavirus Cases" cases={21453} total={3000123} />
-        <InfoBox title="Recoverd" cases={12342} total={30123} />
-        <InfoBox title="Deaths" cases={3462} total={123623} />
-      </div>
-      {/* InfoBox */}
-      {/* InfoBox */}
-      {/* InfoBox */}
-      {/* Table */}
-      {/* Graph */}
-      {/* Map */}
+      <Card className="app__right">
+        <CardContent>
+          <h3>Live Cases by Country</h3>
+          <h3>Worldwide new cases</h3>
+        </CardContent>
+      </Card>     
     </div>
   );
 }
