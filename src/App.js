@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import InfoBox from "./InfoBox.js";
 import Map from "./Map.js";
+import Table from "./Table.js";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -27,7 +28,6 @@ function App() {
           }));
           setTableData(data);
           setCountries(countries);
-
         });
     };
     getCountriesData();
@@ -53,7 +53,6 @@ function App() {
         setCountry(countryCode);
         setCountryInfo(data);
       });
-
   };
 
   return (
@@ -95,14 +94,15 @@ function App() {
           />
         </div>
 
-        {/* Table */}
-        {/* Graph */}
         {/* Map */}
         <Map />
       </div>
       <Card className="app__right">
+        {/* Table */}
+        {/* Graph */}
         <CardContent>
           <h3>Live Cases by Country</h3>
+          <Table countries={tableData}/>
           <h3>Worldwide new cases</h3>
         </CardContent>
       </Card>
