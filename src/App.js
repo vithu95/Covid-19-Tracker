@@ -14,6 +14,8 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState(["worldwide"]);
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
+
   useEffect(() => {
     const getCountriesData = async () => {
       await fetch("https://disease.sh/v3/covid-19/countries")
@@ -23,7 +25,9 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          setTableData(data);
           setCountries(countries);
+
         });
     };
     getCountriesData();
@@ -49,7 +53,7 @@ function App() {
         setCountry(countryCode);
         setCountryInfo(data);
       });
-    console.log(countryInfo);
+
   };
 
   return (
@@ -80,7 +84,7 @@ function App() {
             total={countryInfo.cases}
           />
           <InfoBox
-            title="Recoverd"
+            title="Recovered"
             cases={countryInfo.todayRecovered}
             total={countryInfo.recovered}
           />
