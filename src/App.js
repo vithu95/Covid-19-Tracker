@@ -10,6 +10,7 @@ import "./App.css";
 import InfoBox from "./InfoBox.js";
 import Map from "./Map.js";
 import Table from "./Table.js";
+import { sortData } from "./util.js";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -26,7 +27,8 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
-          setTableData(data);
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -102,7 +104,7 @@ function App() {
         {/* Graph */}
         <CardContent>
           <h3>Live Cases by Country</h3>
-          <Table countries={tableData}/>
+          <Table countries={tableData} />
           <h3>Worldwide new cases</h3>
         </CardContent>
       </Card>
