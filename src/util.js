@@ -29,7 +29,7 @@ export const sortData = (data) => {
 export const prettyPrintStat = (stat) =>
   stat ? `+${numeral(stat).format("0.0a")}` : "+0";
 
-export const showDataOnMap = (data, casesType = "cases") => {
+export const showDataOnMap = (data, casesType = "cases") =>
   data.map((country) => (
     <Circle
       center={[country.countryInfo.lat, country.countryInfo.long]}
@@ -60,4 +60,3 @@ export const showDataOnMap = (data, casesType = "cases") => {
       </Popup>
     </Circle>
   ));
-};

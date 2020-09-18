@@ -35,8 +35,6 @@ function App() {
           setTableData(sortedData);
           setCountries(countries);
           setMapCountries(data);
-          console.log(data);
-          console.log(mapCountries);
         });
     };
     getCountriesData();
@@ -106,9 +104,7 @@ function App() {
             total={countryInfo.deaths}
           />
         </div>
-
-        {/* Map */}
-        <Map center={center} zoom={zoom} countries={mapCountries} />
+        <Map center={center} zoom={zoom} countries={mapCountries} casesType="cases" />
       </div>
       <Card className="app__right">
         {/* Table */}
