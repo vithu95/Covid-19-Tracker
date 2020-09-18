@@ -11,7 +11,6 @@ import InfoBox from "./InfoBox.js";
 import Map from "./Map.js";
 import Table from "./Table.js";
 import LineGraph from "./LineGraph.js";
-
 import { sortData } from "./util.js";
 
 function App() {
@@ -19,7 +18,9 @@ function App() {
   const [country, setCountry] = useState(["worldwide"]);
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
-
+  const [center, setCenter] = useState({ lat: 34.8, lng: -40.45 });
+  const [zoom, setZoom] = useState(3);
+  
   useEffect(() => {
     const getCountriesData = async () => {
       await fetch("https://disease.sh/v3/covid-19/countries")
@@ -99,7 +100,7 @@ function App() {
         </div>
 
         {/* Map */}
-        <Map />
+        <Map center={center} zoom={zoom} />
       </div>
       <Card className="app__right">
         {/* Table */}
