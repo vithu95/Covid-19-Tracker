@@ -11,7 +11,7 @@ import InfoBox from "./InfoBox.js";
 import Map from "./Map.js";
 import Table from "./Table.js";
 import LineGraph from "./LineGraph.js";
-import { sortData } from "./util.js";
+import { sortData, prettyPrintStat } from "./util.js";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -21,6 +21,7 @@ function App() {
   const [center, setMapCenter] = useState({ lat: 34.8, lng: -40.45 });
   const [zoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     const getCountriesData = async () => {
@@ -89,22 +90,30 @@ function App() {
         {/* Title + Select Input dropdown field */}
         <div className="app__stats">
           <InfoBox
+            onClick={(e) => setCasesType("cases")}
             title="Coronavirus Cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("recovered")}
             title="Recovered"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("deaths")}
             title="Deaths"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
-        <Map center={center} zoom={zoom} countries={mapCountries} casesType="cases" />
+        <Map
+          center={center}
+          zoom={zoom}
+          countries={mapCountries}
+          casesType={casesType}
+        />
       </div>
       <Card className="app__right">
         {/* Table */}
@@ -112,8 +121,8 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={tableData} />
-          <h3>Worldwide new cases</h3>
-          <LineGraph />
+          <h3>Worldwide new {casesType}</h3>
+          <LineGraph casesType={casesType} />
           {/*Graph*/}
         </CardContent>
       </Card>
