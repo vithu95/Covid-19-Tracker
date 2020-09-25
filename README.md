@@ -1,2 +1,2 @@
 # Covid-19 Tracker using React.js
-https://gracious-bhaskara-72aee4.netlify.app/
+go check out the deployed version of this project: https://covid-19-tracker-v2.netlify.app/
